@@ -38,6 +38,10 @@ const themeConfig = ref<ThemeConfig>({
     },
     Card: {
       borderColor: theme.colors.gray[800]
+    },
+    Slider: {
+      indicatorColor: "rgba(51, 51, 51, 1)",
+      indicatorTextColor: "rgba(255, 255, 255, 0.9)"
     }
   },
 })
