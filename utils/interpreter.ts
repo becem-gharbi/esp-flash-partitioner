@@ -79,16 +79,13 @@ export function generatePartitionTable(prefs: Preferences) {
   const previousPartition: Partition =
     partitionTable[partitionTable.length - 1];
 
-  const remainingFlashSize =
-    prefs.flashSize - (previousPartition.size + previousPartition.offset);
-
   const app0: Partition = {
     name: "app0",
     type: "app",
     subType: "ota_0",
     flags: "",
-    offset: previousPartition.size + previousPartition.offset, // Check if offset multiple of 64
-    size: prefs.otaEnable ? remainingFlashSize / 2 : remainingFlashSize,
+    offset: getApp0Offset(previousPartition),
+    size: getApp0Size(previousPartition, prefs),
   };
 
   partitionTable.push(app0);
@@ -99,7 +96,7 @@ export function generatePartitionTable(prefs: Preferences) {
       type: "app",
       subType: "ota_1",
       flags: "",
-      offset: app0.size + app0.offset, // Check if offset multiple of 64
+      offset: app0.size + app0.offset,
       size: app0.size,
     };
 
@@ -107,4 +104,24 @@ export function generatePartitionTable(prefs: Preferences) {
   }
 
   return partitionTable;
+}
+
+function getApp0Offset(previousPartition: Partition) {
+  const offset = previousPartition.size + previousPartition.offset;
+  return offset + (offset % 64 === 0 ? 0 : 64);
+}
+
+function getApp0Size(previousPartition: Partition, prefs: Preferences) {
+  const app0Offset = getApp0Offset(previousPartition);
+
+  const remainingFlashSize = prefs.flashSize - app0Offset;
+
+  const usableFlashSize =
+    remainingFlashSize - (remainingFlashSize % 64 === 0 ? 0 : 64);
+
+  if (prefs.otaEnable) {
+    return usableFlashSize / 2 - ((usableFlashSize / 2) % 64);
+  } else {
+    return usableFlashSize;
+  }
 }
