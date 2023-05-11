@@ -10,7 +10,9 @@
 <script setup lang="ts">
 
 function onPreferencesChange(prefs: Preferences) {
-    console.log(prefs.flashSize)
+    const partitionTable = generatePartitionTable(prefs)
+
+    console.table(partitionTable)
 }
 </script>
 

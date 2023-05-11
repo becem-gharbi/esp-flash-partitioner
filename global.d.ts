@@ -4,12 +4,27 @@ declare global {
   type HighchartsOptions = Options;
 
   interface Partition {
-    name: "nvs" | "otadata" | "app0" | "app1" | "coredump" | "spiffs";
     type: "app" | "data";
-    subType: "nvs" | "ota" | "ota_0" | "ota_1" | "coredump" | "spiffs";
-    offset: number;
     size: number;
-    flags: String;
+    offset: number;
+    flags: "" | "encrypted";
+    name:
+      | "nvs"
+      | "otadata"
+      | "app0"
+      | "app1"
+      | "coredump"
+      | "spiffs"
+      | "nvs_key";
+
+    subType:
+      | "nvs"
+      | "ota"
+      | "ota_0"
+      | "ota_1"
+      | "coredump"
+      | "spiffs"
+      | "nvs_keys";
   }
 
   interface Preferences {
