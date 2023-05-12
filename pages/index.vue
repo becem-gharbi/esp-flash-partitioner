@@ -2,8 +2,12 @@
     <div class="m-5 md:m-10 grid grid-cols-4 md:gap-10 gap-5">
 
         <div class="col-span-3">
-            <n-h1 class="text-xl mb-0">ESP32 Flash Partitioner</n-h1>
+            <n-h1 class="text-2xl mb-0">ESP32 Flash Partitioner</n-h1>
             <n-text :depth="3" class="text-base">A utility to easily generate ESP32 partition table</n-text>
+            <NuxtLink to="https://github.com/becem-gharbi/esp-flash-partitioner" target="_blank"
+                class="block mt-4 text-base">
+                How it works ?
+            </NuxtLink>
         </div>
 
         <ColorModeToggler class="w-fit justify-self-end" />

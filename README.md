@@ -1,4 +1,4 @@
-# ESP Flash Partitinoner
+# ESP Flash Partitioner
 
 A utility to easily generate partition table for ESP32 chips
 
