@@ -109,9 +109,9 @@ export function generatePartitionTable(prefs: Preferences) {
 }
 
 function getApp0Offset(previousPartition: Partition) {
-  let offset = previousPartition.size + previousPartition.offset;
-  offset += offset % 64 === 0 ? 0 : 64;
-  return offset;
+  const offset = previousPartition.size + previousPartition.offset;
+  const remainder = offset % 64;
+  return offset - remainder + (remainder === 0 ? 0 : 64);
 }
 
 function getApp0Size(previousPartition: Partition, prefs: Preferences) {
@@ -119,11 +119,11 @@ function getApp0Size(previousPartition: Partition, prefs: Preferences) {
 
   const remainingFlashSize = prefs.flashSize - app0Offset;
 
-  const usableFlashSize =
-    remainingFlashSize - (remainingFlashSize % 64 === 0 ? 0 : 64);
+  const usableFlashSize = remainingFlashSize - (remainingFlashSize % 64);
 
   if (prefs.otaEnable) {
-    return usableFlashSize / 2 - ((usableFlashSize / 2) % 64);
+    const usableFlashSizeHalf = usableFlashSize / 2;
+    return usableFlashSizeHalf - (usableFlashSizeHalf % 64);
   } else {
     return usableFlashSize;
   }
@@ -131,12 +131,12 @@ function getApp0Size(previousPartition: Partition, prefs: Preferences) {
 
 export function partitionTableToCsv(partitionTable: Partition[]) {
   const formattedTable = partitionTable.map((partition) => ({
-    type: partition.type,
-    size: partition.size + "K",
-    offset: partition.size + "K",
-    flags: partition.flags,
     name: partition.name,
+    type: partition.type,
     subType: partition.subType,
+    offset: partition.offset + "K",
+    size: partition.size + "K",
+    flags: partition.flags,
   }));
 
   return Papa.unparse(formattedTable, {
