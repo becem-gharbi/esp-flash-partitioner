@@ -6,6 +6,13 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "ESP Flash Partinioner",
+      meta: [
+        {
+          name: "description",
+          content:
+            "A utility to easily generate partition table for ESP32 chips",
+        },
+      ],
       htmlAttrs: {
         lang: "en",
       },
