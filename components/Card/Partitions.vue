@@ -1,5 +1,12 @@
 <template>
     <n-card title="Flash Partition" size="small" segmented>
+        <template #header>
+            <div class="flex items-center gap-2">
+                <NaiveIcon name="ph:chart-pie" />
+                Partitions
+            </div>
+        </template>
+
         <ChartPartitions :partition-table="partitionTable" />
 
         <template #footer>

@@ -1,5 +1,12 @@
 <template>
-    <n-card size="small" title="Preferences" segmented>
+    <n-card size="small" segmented>
+        <template #header>
+            <div class="flex items-center gap-2">
+                <NaiveIcon name="ph:gear" />
+                Preferences
+            </div>
+        </template>
+
         <n-form ref="formRef" :model="model">
 
             <n-form-item label="Flash size" path="flashSize">
