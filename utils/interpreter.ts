@@ -129,12 +129,14 @@ function getApp0Size(previousPartition: Partition, prefs: Preferences) {
 }
 
 export function partitionTableToCsv(partitionTable: Partition[]) {
-  const formattedTable = partitionTable.map((partition) => {
-    const formattedPartition = { ...partition };
-    formattedPartition.size *= 1000;
-    formattedPartition.offset *= 1000;
-    return formattedPartition;
-  });
+  const formattedTable = partitionTable.map((partition) => ({
+    type: partition.type,
+    size: partition.size + "K",
+    offset: partition.size + "K",
+    flags: partition.flags,
+    name: partition.name,
+    subType: partition.subType,
+  }));
 
   return Papa.unparse(formattedTable, {
     header: false,
