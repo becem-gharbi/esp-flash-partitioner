@@ -10,7 +10,12 @@
         <ChartPartitions :partition-table="partitionTable" />
 
         <template #footer>
-            <n-button @click="downloadTable" type="primary">Download Partition Table</n-button>
+            <n-button @click="downloadTable" type="primary">
+                <template #icon>
+                    <NaiveIcon name="ph:download-simple"></NaiveIcon>
+                </template>
+
+                Download Partition Table</n-button>
         </template>
     </n-card>
 </template>

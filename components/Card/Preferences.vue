@@ -97,7 +97,12 @@
         </n-form>
 
         <template #footer>
-            <n-button @click="onSubmit" type="primary">Generate Partition Table</n-button>
+            <n-button @click="onSubmit" type="primary">
+                <template #icon>
+                    <NaiveIcon name="ph:calculator"></NaiveIcon>
+                </template>
+                
+                Generate Partition Table</n-button>
         </template>
     </n-card>
 </template>
