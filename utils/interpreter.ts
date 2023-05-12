@@ -109,8 +109,9 @@ export function generatePartitionTable(prefs: Preferences) {
 }
 
 function getApp0Offset(previousPartition: Partition) {
-  const offset = previousPartition.size + previousPartition.offset;
-  return offset + (offset % 64 === 0 ? 0 : 64);
+  let offset = previousPartition.size + previousPartition.offset;
+  offset += offset % 64 === 0 ? 0 : 64;
+  return offset;
 }
 
 function getApp0Size(previousPartition: Partition, prefs: Preferences) {

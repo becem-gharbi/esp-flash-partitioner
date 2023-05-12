@@ -23,12 +23,15 @@ const options = computed<HighchartsOptions>(() => ({
     },
 
     tooltip: {
-        valueSuffix: "K"
+        valueSuffix: "K",
+        style: {
+            fontSize: 13
+        }
     },
 
     accessibility: {
         point: {
-            valueSuffix: 'K'
+            valueSuffix: "K"
         }
     },
 
@@ -39,14 +42,19 @@ const options = computed<HighchartsOptions>(() => ({
             dataLabels: {
                 enabled: true,
                 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-            }
-        }
+            },
+        },
     },
 
     series: [{
         name: 'Size',
         colorByPoint: true,
-        data: data.value
+        data: data.value,
+        dataLabels: {
+            style: {
+                fontSize: 13
+            }
+        },
     }]
 }))
 

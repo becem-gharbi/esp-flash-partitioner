@@ -7,11 +7,11 @@
             </n-form-item>
 
             <n-form-item label="Non-volatile storage" path="nvsSize">
-                <n-input-number v-model:value="model.nvsSize" :min="0" :max="64" :step="model.nvsSize === 0 ? 12 : 4"
-                    :validator="nvsValidator" class="w-full" />
+                <n-input-number v-model:value="model.nvsSize" :min="0" :max="64"
+                    :step="[12, 0].includes(model.nvsSize) ? 12 : 4" :validator="nvsValidator" class="w-full" />
             </n-form-item>
 
-            <n-form-item label="SPIFFS filesystem" path="spiffsSize">
+            <n-form-item label="Usable SPIFFS" path="spiffsSize">
                 <n-input-number v-model:value="model.spiffsSize" :min="0" :step="4" :validator="spiffsValidator"
                     class="w-full" />
             </n-form-item>
@@ -48,8 +48,8 @@ const model = ref<Preferences>({
     coredumpEnable: false,
     encryptionEnable: false,
     flashSize: 4096,
-    nvsSize: 24, // between 12 and 64
-    spiffsSize: 1408,
+    nvsSize: 24,
+    spiffsSize: 1056,
     otaEnable: false
 })
 
@@ -80,6 +80,4 @@ function onSubmit() {
 
     emits('submit', preferences)
 }
-
-
 </script>
