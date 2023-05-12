@@ -25,7 +25,7 @@
             <n-form-item path="nvsSize">
                 <template #label>
                     <TooltipFormItem>
-                        Non-volatile storage
+                        Non-volatile storage size (kB)
                         <template #help>
                             NVS can be used to store per-device PHY calibration data, WiFi data, SSL certificates and other
                             application data. It supports encryption.
@@ -34,13 +34,14 @@
                 </template>
 
                 <n-input-number v-model:value="model.nvsSize" :min="0" :max="64"
-                    :step="[12, 0].includes(model.nvsSize) ? 12 : 4" :validator="nvsValidator" class="w-full" />
+                    :step="[12, 0].includes(model.nvsSize) ? 12 : 4" :validator="nvsValidator" class="w-full">
+                </n-input-number>
             </n-form-item>
 
             <n-form-item path="spiffsSize">
                 <template #label>
                     <TooltipFormItem>
-                        SPIFFS used
+                        SPIFFS used (kB)
                         <template #help>
                             SPI flash filesystem can be used to store large files. It reliably utilizes only around 75% of
                             the assigned partition space -> SPIFFS used = SPIFFS size * 75%. It do not support encryption.
