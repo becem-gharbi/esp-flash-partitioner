@@ -111,7 +111,7 @@ export function generatePartitionTable(prefs: Preferences) {
 function getApp0Offset(previousPartition: Partition) {
   const offset = previousPartition.size + previousPartition.offset;
   const remainder = offset % 64;
-  return offset - remainder + (remainder === 0 ? 0 : 64);
+  return offset - remainder + (remainder && 64);
 }
 
 function getApp0Size(previousPartition: Partition, prefs: Preferences) {

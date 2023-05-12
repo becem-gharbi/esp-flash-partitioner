@@ -145,7 +145,7 @@ function onSubmit() {
 
     preferences.spiffsSize = Math.ceil(preferences.spiffsSize * 100 / 75)
 
-    preferences.spiffsSize += preferences.spiffsSize % 4 === 0 ? 0 : 4
+    preferences.spiffsSize += (preferences.spiffsSize % 4) && 4
 
     emits('submit', preferences)
 }
