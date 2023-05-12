@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.1.2
+
+[compare changes](https://github.com/becem-gharbi/esp-flash-partitioner/compare/v0.1.1...v0.1.2)
+
+
+### 🩹 Fixes
+
+  - Fix calculations ([1a3e02a](https://github.com/becem-gharbi/esp-flash-partitioner/commit/1a3e02a))
+
+### 💅 Refactors
+
+  - Add kb to label of number inputs ([73c4c9b](https://github.com/becem-gharbi/esp-flash-partitioner/commit/73c4c9b))
+  - Font weight change ([350049c](https://github.com/becem-gharbi/esp-flash-partitioner/commit/350049c))
+
+### ❤️  Contributors
+
+- Becem-gharbi
+
 ## v0.1.1
 
 
