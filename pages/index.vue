@@ -10,7 +10,7 @@
             </NuxtLink>
         </div>
 
-        <ColorModeToggler class="w-fit justify-self-end" />
+        <NaiveColorModeSwitch class="w-fit justify-self-end" :text="false" secondary />
 
         <CardPreferences class="col-span-full md:col-span-2" @submit="onPreferencesChange"></CardPreferences>
 
