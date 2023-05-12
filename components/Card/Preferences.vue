@@ -26,7 +26,7 @@
                     <n-checkbox v-model:checked="model.coredumpEnable" label="Enable" />
                 </n-form-item>
 
-                <n-form-item label="Encryption" path="encryptionEnable" class="mb-0">
+                <n-form-item label="Encryption" path="encryptionEnable">
                     <n-checkbox v-model:checked="model.encryptionEnable" label="Enable" />
                 </n-form-item>
 
@@ -34,7 +34,7 @@
         </n-form>
 
         <template #footer>
-            <n-button @click="$emit('submit', model)" type="primary">Generate Partition Table</n-button>
+            <n-button @click="onSubmit" type="primary">Generate Partition Table</n-button>
         </template>
     </n-card>
 </template>
@@ -69,6 +69,17 @@ function spiffsValidator(size: number) {
     return size % 4 === 0
 }
 
+const emits = defineEmits(["submit"])
 
-defineEmits(["submit"])
+function onSubmit() {
+    const preferences: Preferences = { ...model.value }
+
+    preferences.spiffsSize = Math.ceil(preferences.spiffsSize * 100 / 75)
+
+    preferences.spiffsSize += preferences.spiffsSize % 4 === 0 ? 0 : 4
+
+    emits('submit', preferences)
+}
+
+
 </script>
