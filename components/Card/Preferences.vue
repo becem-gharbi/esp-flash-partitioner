@@ -101,7 +101,7 @@
                 <template #icon>
                     <NaiveIcon name="ph:calculator"></NaiveIcon>
                 </template>
-                
+
                 Generate Partition Table</n-button>
         </template>
     </n-card>

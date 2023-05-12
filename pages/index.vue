@@ -1,10 +1,16 @@
 <template>
-    <div class="m-5 grid md:grid-cols-2 gap-10">
-        <!-- <ColorModeToggler /> -->
+    <div class="m-5 md:m-10 grid grid-cols-4 md:gap-10 gap-5">
 
-        <CardPreferences @submit="onPreferencesChange"></CardPreferences>
+        <div class="col-span-3">
+            <n-h1 class="text-xl mb-0">ESP32 Flash Partitioner</n-h1>
+            <n-text :depth="3" class="text-base">A utility to easily generate ESP32 partition table</n-text>
+        </div>
 
-        <CardPartitions v-if="partitionTable" :partition-table="partitionTable" />
+        <ColorModeToggler class="w-fit justify-self-end" />
+
+        <CardPreferences class="col-span-full md:col-span-2" @submit="onPreferencesChange"></CardPreferences>
+
+        <CardPartitions class="col-span-full md:col-span-2" v-if="partitionTable" :partition-table="partitionTable" />
     </div>
 </template>
 
@@ -16,13 +22,3 @@ function onPreferencesChange(prefs: Preferences) {
     console.table(partitionTable.value)
 }
 </script>
-
-<style>
-.page-center {
-    min-height: 100vh;
-    min-height: 100dvh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-</style>
