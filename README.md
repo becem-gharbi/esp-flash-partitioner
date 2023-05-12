@@ -1,40 +1,28 @@
-# Nuxt 3 starter
+# ESP Flash Partitinoner
 
-A modular template that provides essential features to quickly get started on your full stack Nuxt 3 project
+A utility to easily generate partition table for ESP32 chips
 
-## Features
+## Rules
 
-- ✔️ Prisma integration
-- ✔️ User authentication with password and social login via [@bg-dev/nuxt-auth](https://github.com/becem-gharbi/nuxt-auth) module
-- ✔️ File upload to S3 compatible file storage services via [@bg-dev/nuxt-s3](https://github.com/becem-gharbi/nuxt-s3) module
-- ✔️ Customizable UI layer based on Naive UI via [@bg-dev/nuxt-naiveui](https://github.com/becem-gharbi/nuxt-naiveui) module
-- ✔️ Firebase Cloud Messaging integration via [@bg-dev/nuxt-fcm](https://github.com/becem-gharbi/nuxt-fcm) module
-- ✔️ Tailwindcss integration via [@nuxtjs/tailwindcss](https://github.com/nuxt-modules/tailwindcss) module
-- ✔️ HTTP security via [nuxt-security](https://github.com/baroshem/nuxt-security) module
-- ✔️ Error monitoring via [bugsnag-js](https://github.com/bugsnag/bugsnag-js) module
+The rules used to compute the partition table is based on Espressif [docs](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/partition-tables.html):
 
-## Setup
-1. Create new repository from this [template](https://github.com/becem-gharbi/nuxt-starter).
-1. Rename `.example.env` to `.env` and set the environment variables, check [docs](https://nuxt-starter-ready-docs.vercel.app/auth).
-2. Make sure to install the dependencies:
+- First partition should start at 36K offset
+- Name field should be less than 16 bytes including Null terminator
+- Type field can either be `app` or `data`
+- Partition of type `app` should be multiple of 64K
+- When OTA enabled at least 2 OTA `app` partitions should be defined
+- OTA `app` partitions should have the same size
+- OTA `data` partition should be 8K
+- NVS `data` partition should be between 12K and 64K
+- NVS_KEYS `data` partition should be 4K
+- Coredump `data` partition should be 64K
+- The offset field should be multiple of 4K
+- The size field should be multiple of 4K
+- The offset field for partitions of type `app` should be multiple of 64K
+- The size & offset fields can be specified as decimal with prefix multiplier K
+- Flags can either be empty string or `encrypted`
+- Partitions of type `app` are always encrypted
 
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
-4. Run prisma migration
-```bash
-npx prisma migrate dev
-```
-
-That's it! You can now get started on your project ✨
 ## Development Server
 
 Start the development server on http://localhost:3000
