@@ -3,33 +3,89 @@
         <n-form ref="formRef" :model="model">
 
             <n-form-item label="Flash size" path="flashSize">
+                <template #label>
+                    <TooltipFormItem>
+                        Flash size
+                        <template #help>
+                            The flash size for target ESP32
+                        </template>
+                    </TooltipFormItem>
+                </template>
+
                 <n-select v-model:value="model.flashSize" :options="flashSizeOptions" />
             </n-form-item>
 
-            <n-form-item label="Non-volatile storage" path="nvsSize">
+            <n-form-item path="nvsSize">
+                <template #label>
+                    <TooltipFormItem>
+                        Non-volatile storage
+                        <template #help>
+                            NVS can be used to store per-device PHY calibration data, WiFi data, SSL certificates and other
+                            application data. It supports encryption.
+                        </template>
+                    </TooltipFormItem>
+                </template>
+
                 <n-input-number v-model:value="model.nvsSize" :min="0" :max="64"
                     :step="[12, 0].includes(model.nvsSize) ? 12 : 4" :validator="nvsValidator" class="w-full" />
             </n-form-item>
 
-            <n-form-item label="Usable SPIFFS" path="spiffsSize">
+            <n-form-item path="spiffsSize">
+                <template #label>
+                    <TooltipFormItem>
+                        SPIFFS used
+                        <template #help>
+                            SPI flash filesystem can be used to store large files. It reliably utilizes only around 75% of
+                            the assigned partition space -> SPIFFS used = SPIFFS size * 75%. It do not support encryption.
+                        </template>
+                    </TooltipFormItem>
+                </template>
+
                 <n-input-number v-model:value="model.spiffsSize" :min="0" :step="4" :validator="spiffsValidator"
                     class="w-full" />
             </n-form-item>
 
             <div class="grid grid-cols-2">
 
-                <n-form-item label="Over The Air updates" path="otaEnable">
+                <n-form-item path="otaEnable">
+                    <template #label>
+                        <TooltipFormItem>
+                            Over The Air updates
+                            <template #help>
+                                Allows remote firmware updates
+                            </template>
+                        </TooltipFormItem>
+                    </template>
+
                     <n-checkbox v-model:checked="model.otaEnable" label="Enable" />
                 </n-form-item>
 
-                <n-form-item label="Coredump" path="coredumpEnable">
+                <n-form-item path="coredumpEnable">
+                    <template #label>
+                        <TooltipFormItem>
+                            Coredump
+                            <template #help>
+                                Allows to store core dump on flash. Which used to analyze critical errors like crash and
+                                panic
+                            </template>
+                        </TooltipFormItem>
+                    </template>
+
                     <n-checkbox v-model:checked="model.coredumpEnable" label="Enable" />
                 </n-form-item>
 
-                <n-form-item label="Encryption" path="encryptionEnable">
+                <n-form-item path="encryptionEnable">
+                    <template #label>
+                        <TooltipFormItem>
+                            Encryption
+                            <template #help>
+                                Allows to store NVS encryption keys when NVS encryption is enabled
+                            </template>
+                        </TooltipFormItem>
+                    </template>
+
                     <n-checkbox v-model:checked="model.encryptionEnable" label="Enable" />
                 </n-form-item>
-
             </div>
         </n-form>
 

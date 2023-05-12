@@ -42,6 +42,10 @@ const themeConfig = ref<ThemeConfig>({
     Slider: {
       indicatorColor: "rgba(51, 51, 51, 1)",
       indicatorTextColor: "rgba(255, 255, 255, 0.9)"
+    },
+    Tooltip: {
+      color: "rgba(51, 51, 51, 1)",
+      textColor: "rgba(255, 255, 255, 0.9)"
     }
   },
 })
