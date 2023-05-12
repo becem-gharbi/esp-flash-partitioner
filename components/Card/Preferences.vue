@@ -53,7 +53,7 @@
                     class="w-full" />
             </n-form-item>
 
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-3">
 
                 <n-form-item path="otaEnable">
                     <template #label>

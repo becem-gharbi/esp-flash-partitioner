@@ -1,5 +1,5 @@
 <template>
-    <div class="m-5 md:m-10 grid grid-cols-4 md:gap-10 gap-5">
+    <div class="m-5 grid grid-cols-4 gap-5">
 
         <div class="col-span-3">
             <h1 class="text-2xl mb-0 font-semibold">ESP32 Flash Partitioner</h1>
