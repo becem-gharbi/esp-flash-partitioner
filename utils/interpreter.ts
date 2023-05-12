@@ -1,3 +1,5 @@
+import Papa from "papaparse";
+
 const OTA_DATA: Partition = {
   name: "otadata",
   type: "data",
@@ -124,4 +126,17 @@ function getApp0Size(previousPartition: Partition, prefs: Preferences) {
   } else {
     return usableFlashSize;
   }
+}
+
+export function partitionTableToCsv(partitionTable: Partition[]) {
+  const formattedTable = partitionTable.map((partition) => {
+    const formattedPartition = { ...partition };
+    formattedPartition.size *= 1000;
+    formattedPartition.offset *= 1000;
+    return formattedPartition;
+  });
+
+  return Papa.unparse(formattedTable, {
+    header: false,
+  });
 }

@@ -1,18 +1,19 @@
 <template>
-    <div class="m-3 md:w-1/2">
-        <ColorModeToggler />
-        <n-card size="small" title="Preferences" segmented>
-            <FormPreferences @submit="onPreferencesChange" />
-        </n-card>
+    <div class="m-5 grid md:grid-cols-2 gap-10">
+        <!-- <ColorModeToggler /> -->
+
+        <CardPreferences @submit="onPreferencesChange"></CardPreferences>
+
+        <CardPartitions v-if="partitionTable" :partition-table="partitionTable" />
     </div>
 </template>
 
 <script setup lang="ts">
+const partitionTable = ref<Partition[]>()
 
 function onPreferencesChange(prefs: Preferences) {
-    const partitionTable = generatePartitionTable(prefs)
-
-    console.table(partitionTable)
+    partitionTable.value = generatePartitionTable(prefs)
+    console.table(partitionTable.value)
 }
 </script>
 

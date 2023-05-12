@@ -1,5 +1,10 @@
 <template>
-    <div :style="{ width: `${width}px`, height: `${height}px` }">
+    <div :style="{
+        width: `${width}px`,
+        height: `${height}px`,
+        borderRadius: naiveTheme.common?.borderRadius,
+        overflow: 'hidden'
+    }">
         <ClientOnly>
             <Chart :options="highchartsOptions"></Chart>
         </ClientOnly>
