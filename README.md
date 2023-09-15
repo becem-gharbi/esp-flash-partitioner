@@ -1,6 +1,6 @@
 # ESP Flash Partitioner
 
-A utility to easily generate partition table for ESP32 chips
+A utility to easily generate partition table for ESP32 microcontrollers.
 
 ## Rules
 
