@@ -1,16 +1,16 @@
 import { naiveui, tailwindcss } from "./config";
 
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
 
   app: {
     head: {
-      title: "ESP Flash Partinioner",
+      title: "ESP Flash Partitioner",
       meta: [
         {
           name: "description",
           content:
-            "A utility to easily generate partition table for ESP32 chips",
+            "A utility to easily generate partition table for ESP32 microcontrollers",
         },
       ],
       htmlAttrs: {

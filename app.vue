@@ -1,11 +1,11 @@
 <template>
-  <NaiveConfig :theme-config="themeConfig">
+  <NaiveConfig :theme-config="themeConfig" >
     <NuxtPage />
   </NaiveConfig>
 </template>
 
 <script setup lang="ts">
-import { ThemeConfig } from "@bg-dev/nuxt-naiveui"
+import type { ThemeConfig } from "@bg-dev/nuxt-naiveui"
 import { theme } from "#tailwind-config";
 
 const themeConfig = ref<ThemeConfig>({
